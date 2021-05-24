@@ -8,7 +8,8 @@ import Tasks from '../pages/Tasks'
 const App=({user})=>(
     <BrowserRouter>
         <Switch>
-            <Route exact path="/" render={()=><Tasks user={user}/>} />
+            <Route exact path="/" component={SingIn}/>
+            <Route exact path="/tasks" render={()=><Tasks user={user}/>} />
             <Route exact path="/singup" component={SingUp}/>
             <Route exact path="/login" component={SingIn}/>
         </Switch>

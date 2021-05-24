@@ -1,22 +1,58 @@
 import React from 'react'
 
-const SingUpForm = () => (
+const SingUpForm = ({ onSubmit, onChange,form}) => (
     <div className='container'>
-        <form className="form mt-2">
+        <form className="form mt-2"
+            onSubmit={onSubmit}
+        >
             <div className="mb-2">
-                <input name="userName" type="text" className="form-control" placeholder="Username" required></input>
+                <input
+                    name="userName"
+                    type="text"
+                    className="form-control"
+                    placeholder="Username"
+                    required
+                    onChange={onChange}
+                    value={form.userName}
+                />
             </div>
             <div className="mb-2">
-                <input name="name" type="text" className="form-control" placeholder="Name" required></input>
+                <input
+                    name="name"
+                    type="text"
+                    className="form-control"
+                    placeholder="Name"
+                    required
+                    onChange={onChange}
+                    value={form.name}
+                />
             </div>
             <div className="mb-2">
-                <input name="lastName" type="text" className="form-control" placeholder="Lastname"></input>
+                <input
+                    name="lastName"
+                    type="text"
+                    className="form-control"
+                    placeholder="Last name"
+                    required
+                    onChange={onChange}
+                    value={form.lastName}
+                />
             </div>
             <div className="mb-2">
-                <input name="password" type="password" className="form-control" placeholder="password"required></input>
+                <input
+                    name="password"
+                    type="password"
+                    className="form-control"
+                    placeholder="password"
+                    required
+                    onChange={onChange}
+                    value={form.password}
+                />
             </div>
             <div className="d-grid gap-2">
-                <button className="btn btn-success" type="submit">
+                <button
+                    className="btn btn-success"
+                    type="submit">
                     Create An Accont
                 </button>
             </div>

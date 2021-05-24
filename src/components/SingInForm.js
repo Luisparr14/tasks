@@ -1,16 +1,36 @@
 import React from 'react'
 
-const SingInForm = () => (
+const SingInForm = ({ onSubmit, onChange, form }) => (
     <div className='container'>
-        <form className="form mt-2">
+        <form
+            className="form mt-2"
+            onSubmit={onSubmit}
+        >
             <div className="mb-2">
-                <input name="userName" type="text" className="form-control" placeholder="Username" required></input>
+                <input
+                    name="userName"
+                    type="text"
+                    className="form-control"
+                    placeholder="Username"
+                    required
+                    onChange={onChange}
+                />
             </div>
+
             <div className="mb-2">
-                <input name="password" type="password" className="form-control" placeholder="password" required></input>
+                <input
+                    name="password"
+                    type="password"
+                    className="form-control"
+                    placeholder="password"
+                    required
+                    onChange={onChange}
+                />
             </div>
             <div className="d-grid gap-2">
-                <button className="btn btn-success" type="submit">
+                <button
+                    className="btn btn-success"
+                    type="submit">
                     Log In
             </button>
             </div>

@@ -13,7 +13,7 @@ const NavBar = () => (
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                     <li className="nav-item">
-                        <Link className="nav-link" aria-current="page" to="/">All tasks</Link>
+                        <Link className="nav-link" aria-current="page" to="/tasks">All tasks</Link>
                     </li>
                 </ul>
                 <ul className="d-flex navbar-nav">
