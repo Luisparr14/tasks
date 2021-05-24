@@ -1,0 +1,18 @@
+.card{
+    margin-top: 20px;
+    border: none;
+    border-radius: 15px !important;
+}
+.Task{
+    max-height: 140px;
+    max-width: 520px;
+}
+
+.Task-Info h1{
+    color: #FFF;
+    font-size: 30px;
+}
+.Task-Info p{
+    color: #FFF;
+    font-size: 15px;
+}
