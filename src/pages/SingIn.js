@@ -15,17 +15,26 @@ const SingIn = (props) => {
 
     const handleSubmit = async e => {
         try {
+            let config = {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(form)
+            }
+
             e.preventDefault()
-            let res = await fetch(`http://localhost:8000/api/user/${form.userName}`);
+            let res = await fetch(`http://localhost:8000/api/user/${form.userName}`, config);
             let usr = await res.json();
-            if(usr[0].password===form.password){
-                console.log('entro');
+            console.log(usr)
+            if (usr.passwordV) {
                 props.history.push('/tasks')
-            }else{
+            } else {
                 alert('Contraseña incorrecta')
             }
         } catch (error) {
-            
+
         }
     }
 
