@@ -7,6 +7,6 @@ import 'bootstrap/dist/js/bootstrap.bundle.js'
 const container = document.getElementById('root')
 
 
-ReactDOM.render(<App user='luisparr14'/>, container);
+ReactDOM.render(<App/>, container);
 // ReactDOM.render(<SingUpForm/>, container);
 

@@ -5,11 +5,11 @@ import SingIn from '../pages/SingIn'
 import Tasks from '../pages/Tasks'
 
 
-const App=({user})=>(
+const App=()=>(
     <BrowserRouter>
         <Switch>
             <Route exact path="/" component={SingIn}/>
-            <Route exact path="/tasks" render={()=><Tasks user={user}/>} />
+            <Route exact path="/tasks" component={Tasks} />
             <Route exact path="/singup" component={SingUp}/>
             <Route exact path="/login" component={SingIn}/>
         </Switch>
