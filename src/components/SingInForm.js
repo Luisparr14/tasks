@@ -3,7 +3,7 @@ import React from 'react'
 const SingInForm = ({ onSubmit, onChange, form }) => (
     <div className='container'>
         <form
-            className="form mt-2"
+            className="form mt-5"
             onSubmit={onSubmit}
         >
             <div className="mb-2">
@@ -32,7 +32,7 @@ const SingInForm = ({ onSubmit, onChange, form }) => (
                     className="btn btn-success"
                     type="submit">
                     Log In
-            </button>
+                </button>
             </div>
         </form>
     </div>

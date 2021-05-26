@@ -1,8 +1,9 @@
 import React from 'react'
 import './style/Task.css'
-const Task = ({title, description}) => (
+import Img from '../images/circles.png'
+const Task = ({title, description,leftColor,rightColor}) => (
     <div className="container" >
-        <div className="card mx-auto Task" style={{ background: `linear-gradient(to right, ${'#239b86'}, ${'#658700'})` }}>
+        <div className="card mx-auto Task" style={{ background:`url(${Img}), linear-gradient(to right, ${leftColor||'#239b86'}, ${rightColor||'#658700'})` }}>
             <div className="card-body Task-Info">
                 <h1>{title}</h1>
                 <p>{description}</p>

@@ -2,7 +2,7 @@ import React from 'react'
 
 const SingUpForm = ({ onSubmit, onChange,form}) => (
     <div className='container'>
-        <form className="form mt-2"
+        <form className="form mt-5"
             onSubmit={onSubmit}
         >
             <div className="mb-2">
