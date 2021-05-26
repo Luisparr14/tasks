@@ -12,7 +12,7 @@ const FormAddTask = ({ onChange, onSubmit, form }) => (
                     className="form-control"
                     placeholder="Name"
                     name="name"
-                    value={form.name}
+                    value={form.name||''}
                     onChange={onChange}
                 />
             </div>
@@ -22,7 +22,7 @@ const FormAddTask = ({ onChange, onSubmit, form }) => (
                     className="form-control"
                     placeholder="Description (optional)"
                     name="description"
-                    value={form.description}
+                    value={form.description||''}
                     onChange={onChange}
                 />
             </div>
