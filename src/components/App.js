@@ -8,16 +8,30 @@ import AddTask from '../pages/AddTask'
 
 const cookies = new Cookies()
 console.log("App js",cookies.getAll());
-const App = () => (
-    <BrowserRouter>
-        <Switch>
-            <Route exact path="/" component={SingIn} />
-            <Route exact path="/tasks" component={Tasks} />
-            <Route exact path="/singup" component={SingUp} />
-            <Route exact path="/login" component={SingIn} />
-            <Route exact path="/task/new" component={AddTask} />
-        </Switch>
-    </BrowserRouter>
-)
+const App = () => {
+    if (cookies.get('uname')) {
+        return(
+            <BrowserRouter>
+                <Switch>
+                    <Route exact path="/" component={Tasks} />
+                    <Route exact path="/tasks" component={Tasks} />
+                    <Route exact path="/singup" component={SingUp} />
+                    <Route exact path="/login" component={SingIn} />
+                    <Route exact path="/task/new" component={AddTask} />
+                </Switch>
+            </BrowserRouter>
+            )
+    }else{
+        return( 
+            <BrowserRouter>
+            <Switch>
+                <Route exact path="/singup" component={SingUp} />
+                <Route exact path="/**" component={SingIn} />
+            </Switch>
+            </BrowserRouter>
+        )
+    }
+    
+}
 
 export default App

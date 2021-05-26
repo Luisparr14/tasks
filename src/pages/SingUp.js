@@ -10,12 +10,12 @@ const SingUp = (props) => {
     const [form, setForm]=useState({userName:'', name:'', lastName:'', password:''})
 
     const handleHideLogIn=()=>{
-        if (cookies) {
+        if (cookies.get('uname')) {
             return true
         }
     }
     const handleHideLogOu=()=>{
-        if (!cookies) {
+        if (!cookies.get('uname')) {
             return true
         }
     }

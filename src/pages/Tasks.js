@@ -13,12 +13,12 @@ const Tasks = () => {
     const {tasks} = useFechGetTasks(`http://localhost:8000/api/tasks/${cookies.get('uname')}`)
 
     const handleHideLogIn=()=>{
-        if (cookies) {
+        if (cookies.get('uname')) {
             return true
         }
     }
     const handleHideLogOu=()=>{
-        if (!cookies) {
+        if (!cookies.get('uname')) {
             return true
         }
     }

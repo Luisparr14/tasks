@@ -6,7 +6,7 @@ const ButtonComplete = (props) => {
     const handleClick = async () => {
         try {
             await fetch(`http://localhost:8000/api/tasks/delete/${cookies.get('uname')}/${props.idButton}`)
-            // window.location.href="/tasks"
+            window.location.href="/tasks"
         } catch (error) {
 
         }
