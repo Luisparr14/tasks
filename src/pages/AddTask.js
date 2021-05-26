@@ -1,4 +1,4 @@
-import React, {useState } from 'react'
+import React, { useState } from 'react'
 import FormAddTask from '../components/FormAddTask'
 import NavBar from '../components/NavBar'
 import Task from '../components/Task'
@@ -6,58 +6,58 @@ import Cookies from 'universal-cookie'
 
 const cookies = new Cookies()
 
-const AddTask=(props)=>{
+const AddTask = (props) => {
 
-    const [form, setForm]=useState({username:cookies.get('uname')})
+    const [form, setForm] = useState({ username: cookies.get('uname') })
 
-    const handleChange=(e)=>{
+    const handleChange = (e) => {
         setForm({
             ...form,
-            [e.target.name]:e.target.value
+            [e.target.name]: e.target.value
         })
     }
 
-    const handeSubmit=async e=>{
+    const handeSubmit = async e => {
         e.preventDefault()
         try {
-            let config={
-                method:'POST',
-                headers:{
-                    'Accept':'application/json',
-                    'Content-Type':'application/json'
+            let config = {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
                 },
-                body:JSON.stringify(form)
+                body: JSON.stringify(form)
             }
 
             console.log(JSON.stringify(form));
 
-            await fetch (`http://localhost:8000/api/tasks/`, config)
-            
-            
+            await fetch(`http://localhost:8000/api/tasks/`, config)
+
+
             props.history.push('/tasks')
 
         } catch (error) {
-            console.log('Error: ',error );                
+            console.log('Error: ', error);
         }
     }
 
-    return(
+    return (
         <React.Fragment>
-            <NavBar/>
+            <NavBar />
             <Task
-            title={form.name}
-            description={form.description}
-            leftColor={form.leftColor}
-            rightColor={form.rightColor}
+                title={form.name}
+                description={form.description}
+                leftColor={form.leftColor}
+                rightColor={form.rightColor}
             />
             <FormAddTask
-            onSubmit={handeSubmit}
-            onChange={handleChange}
-            form={form}
+                onSubmit={handeSubmit}
+                onChange={handleChange}
+                form={form}
             />
-            
+
         </React.Fragment>
-        
+
     )
 
 }

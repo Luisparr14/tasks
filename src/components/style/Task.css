@@ -1,18 +1,50 @@
-.card{
+.card {
     margin-top: 20px;
     border: none;
     border-radius: 15px !important;
 }
-.Task{
-    max-height: 140px;
-    max-width: 520px;
+
+.Task {
+    max-height: 400px;
+    max-width: 600px;
 }
 
-.Task-Info h1{
+.Task-Info h1 {
     color: #FFF;
     font-size: 30px;
 }
-.Task-Info p{
+
+.Task-Info p {
     color: #FFF;
-    font-size: 15px;
+    font-size: 19px;
+}
+
+.Btn-Complete {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.Btn-Complete button {
+    font-size: 14px;
+    margin: 0;
+}
+
+@media (min-width: 800px) {
+    body {
+        min-width: 400px;
+    }
+    .Task-Info {
+        display: grid;
+        grid-template-columns: auto auto;
+    }
+    .Btn-Complete {
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-end;
+    }
+    .Btn-Complete button {
+        width: 70;
+        height: 31px;
+        font-size: 14px;
+    }
 }

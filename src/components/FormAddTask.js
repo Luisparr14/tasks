@@ -1,6 +1,6 @@
 import React from 'react'
 
-const FormAddTask = ({ onChange, onSubmit, form }) => ( 
+const FormAddTask = ({ onChange, onSubmit, form }) => (
 
     <div className="container">
         <form className="mt-5"
@@ -20,7 +20,7 @@ const FormAddTask = ({ onChange, onSubmit, form }) => (
                 <input
                     type="text"
                     className="form-control"
-                    placeholder="Description"
+                    placeholder="Description (optional)"
                     name="description"
                     value={form.description}
                     onChange={onChange}
@@ -28,23 +28,23 @@ const FormAddTask = ({ onChange, onSubmit, form }) => (
             </div>
             <div className="row mb-2">
                 <div className="col">
-                    <input 
-                    name="leftColor"
-                    type="color" 
-                    className="form-control" 
-                    style={{height:40}}
-                    value={form.leftColor||'#000000'}
-                    onChange={onChange}
+                    <input
+                        name="leftColor"
+                        type="color"
+                        className="form-control"
+                        style={{ height: 40 }}
+                        value={form.leftColor || '#000000'}
+                        onChange={onChange}
                     />
                 </div>
                 <div className="col">
-                    <input 
-                    name="rightColor"
-                    type="color" 
-                    className="form-control" 
-                    style={{height:40}} 
-                    value={form.rightColor||'#ffffff'}
-                    onChange={onChange}
+                    <input
+                        name="rightColor"
+                        type="color"
+                        className="form-control"
+                        style={{ height: 40 }}
+                        value={form.rightColor || '#ffffff'}
+                        onChange={onChange}
                     />
                 </div>
             </div>

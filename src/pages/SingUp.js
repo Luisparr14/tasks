@@ -29,6 +29,7 @@ const SingUp = (props) => {
             let res=await fetch('http://localhost:8000/api/user',config)
             let user=await res.json()
             console.log(user);
+            
             props.history.push('/');
         } catch (error) {
             console.log('err', error);
