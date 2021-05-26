@@ -10,6 +10,8 @@ const TaskList =({tasks})=>(
                     key={task.id_task}
                     title={task.name}
                     description={task.description}
+                    leftColor={task.leftColor}
+                    rightColor={task.rightColor}
                     />
                 )
             })

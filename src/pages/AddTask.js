@@ -2,10 +2,14 @@ import React, {useState } from 'react'
 import FormAddTask from '../components/FormAddTask'
 import NavBar from '../components/NavBar'
 import Task from '../components/Task'
-const AddTask=()=>{
+import Cookies from 'universal-cookie'
 
-    const [form, setForm]=useState([])
-    
+const cookies = new Cookies()
+
+const AddTask=(props)=>{
+
+    const [form, setForm]=useState({username:cookies.get('uname')})
+
     const handleChange=(e)=>{
         setForm({
             ...form,
@@ -25,10 +29,15 @@ const AddTask=()=>{
                 body:JSON.stringify(form)
             }
 
+            console.log(JSON.stringify(form));
 
+            await fetch (`http://localhost:8000/api/tasks/`, config)
+            
+            
+            props.history.push('/tasks')
 
         } catch (error) {
-            
+            console.log('Error: ',error );                
         }
     }
 
@@ -42,6 +51,7 @@ const AddTask=()=>{
             rightColor={form.rightColor}
             />
             <FormAddTask
+            onSubmit={handeSubmit}
             onChange={handleChange}
             form={form}
             />

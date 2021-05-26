@@ -1,7 +1,6 @@
 import React from 'react'
-import NamesUsers from './NamesUsers'
 
-const FormAddTask = ({ onChange, onSubmit, form }) => (
+const FormAddTask = ({ onChange, onSubmit, form }) => ( 
 
     <div className="container">
         <form className="mt-5"
@@ -27,13 +26,6 @@ const FormAddTask = ({ onChange, onSubmit, form }) => (
                     onChange={onChange}
                 />
             </div>
-            <div className="mb-2" hidden={true}>
-                <React.Fragment>
-                    {
-                        <NamesUsers />
-                    }
-                </React.Fragment>
-            </div>
             <div className="row mb-2">
                 <div className="col">
                     <input 
@@ -41,7 +33,7 @@ const FormAddTask = ({ onChange, onSubmit, form }) => (
                     type="color" 
                     className="form-control" 
                     style={{height:40}}
-                    value={form.leftColor}
+                    value={form.leftColor||'#000000'}
                     onChange={onChange}
                     />
                 </div>
@@ -51,7 +43,7 @@ const FormAddTask = ({ onChange, onSubmit, form }) => (
                     type="color" 
                     className="form-control" 
                     style={{height:40}} 
-                    value={form.rightColor}
+                    value={form.rightColor||'#ffffff'}
                     onChange={onChange}
                     />
                 </div>

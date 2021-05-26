@@ -31,7 +31,7 @@ const SingIn = (props) => {
             e.preventDefault()
             let res = await fetch(`http://localhost:8000/api/user/${form.userName}`, config);
             let usr = await res.json();
-            console.log(usr)
+            
             if (usr.passwordV) {
                 cookies.set('uname', form.userName, { path: "/" })
 
