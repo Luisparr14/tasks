@@ -10,6 +10,17 @@ const AddTask = (props) => {
 
     const [form, setForm] = useState({ username: cookies.get('uname') })
 
+    const handleHideLogIn=()=>{
+        if (cookies) {
+            return true
+        }
+    }
+    const handleHideLogOu=()=>{
+        if (!cookies) {
+            return true
+        }
+    }
+
     const handleChange = (e) => {
         setForm({
             ...form,
@@ -43,7 +54,10 @@ const AddTask = (props) => {
 
     return (
         <React.Fragment>
-            <NavBar />
+            <NavBar
+            hideLogIn={handleHideLogIn()}
+            hideLogOut={handleHideLogOu()}
+            />
             <Task
                 title={form.name}
                 description={form.description}

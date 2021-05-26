@@ -1,10 +1,24 @@
 import React, { useState } from 'react'
 import NavBar from '../components/NavBar'
 import SingUpForm from '../components/SingUpForm'
+import Cookies from 'universal-cookie'
+
+const cookies = new Cookies()
 
 const SingUp = (props) => {
 
     const [form, setForm]=useState({userName:'', name:'', lastName:'', password:''})
+
+    const handleHideLogIn=()=>{
+        if (cookies) {
+            return true
+        }
+    }
+    const handleHideLogOu=()=>{
+        if (!cookies) {
+            return true
+        }
+    }
 
     const handleChange=e=>{
         setForm({
@@ -38,7 +52,10 @@ const SingUp = (props) => {
 
     return (
         <React.Fragment>
-            <NavBar />
+            <NavBar
+            hideLogIn={handleHideLogIn()}
+            hideLogOut={handleHideLogOu()}
+            />
             <SingUpForm 
             onSubmit={handleSubmit}
             onChange={handleChange}

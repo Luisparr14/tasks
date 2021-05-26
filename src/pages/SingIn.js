@@ -10,6 +10,17 @@ const SingIn = (props) => {
 
     const [form, setForm] = useState([])
 
+    const handleHideLogIn=()=>{
+        if (cookies) {
+            return true
+        }
+    }
+    const handleHideLogOu=()=>{
+        if (!cookies) {
+            return true
+        }
+    }
+
     const handleChange = (e) => {
         setForm({
             ...form,
@@ -45,7 +56,10 @@ const SingIn = (props) => {
 
     return (
         <React.Fragment>
-            <NavBar />
+            <NavBar
+            hideLogIn={handleHideLogIn()}
+            hideLogOut={handleHideLogOu()}
+            />
             <SingInForm
                 onChange={handleChange}
                 onSubmit={handleSubmit}

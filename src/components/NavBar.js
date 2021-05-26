@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import './style/NavBar.css'
 
-const NavBar = () => (
+const NavBar = ({hideLogIn,hideLogOut}) => (
 
     <nav className="navbar navbar-expand-lg navbar-light bg-light container-fluid">
         <div className="container-fluid">
@@ -17,12 +17,14 @@ const NavBar = () => (
                     </li>
                 </ul>
                 <ul className="d-flex navbar-nav">
-                    <li className="nav-item">
+                    <li className="nav-item" hidden={hideLogIn}>
                         <Link className="nav-link btn btn-success" to="/login">Log in</Link>
-                        
                     </li>
-                    <li className="nav-item">
+                    <li className="nav-item" hidden={hideLogIn}>
                         <Link className="nav-link btn" to="/singup">Sing Up</Link>
+                    </li>
+                    <li className="nav-item" hidden={hideLogOut}>
+                        <Link className="nav-link btn btn-danger" to="/singup">Log Out</Link>
                     </li>
                 </ul>
             </div>

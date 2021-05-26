@@ -12,9 +12,23 @@ const cookies = new Cookies()
 const Tasks = () => {
     const {tasks} = useFechGetTasks(`http://localhost:8000/api/tasks/${cookies.get('uname')}`)
 
+    const handleHideLogIn=()=>{
+        if (cookies) {
+            return true
+        }
+    }
+    const handleHideLogOu=()=>{
+        if (!cookies) {
+            return true
+        }
+    }
+
     return (
         <React.Fragment>
-            <NavBar />
+            <NavBar
+            hideLogIn={handleHideLogIn()}
+            hideLogOut={handleHideLogOu()}
+            />
             <TaskList
                 tasks={tasks}
             />

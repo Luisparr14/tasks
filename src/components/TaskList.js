@@ -2,7 +2,7 @@ import React from 'react'
 import ButtonComplete from './ButtonComplete'
 import Task from './Task'
 
-const TaskList = ({ tasks },props) => (
+const TaskList = ({tasks}) => (
     <React.Fragment>
         {
             tasks.map((task) => {            
