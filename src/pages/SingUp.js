@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import NavBar from '../components/NavBar'
 import SingUpForm from '../components/SingUpForm'
 import Cookies from 'universal-cookie'
+import url from './config'
 
 const cookies = new Cookies()
 
@@ -40,7 +41,7 @@ const SingUp = (props) => {
                 body: JSON.stringify(form)
             }
 
-            let res=await fetch('http://localhost:8000/api/user',config)
+            let res=await fetch(`${url}user`,config)
             let user=await res.json()
             console.log(user);
             

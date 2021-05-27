@@ -5,12 +5,12 @@ import TaskList from '../components/TaskList'
 import ButtonAdd from '../components/ButtonAdd'
 import Cookies from 'universal-cookie'
 import useFechGetTasks from '../Hooks/useFechGetTasks'
-
+import url from './config'
 const cookies = new Cookies()
 
 
 const Tasks = () => {
-    const {tasks} = useFechGetTasks(`http://localhost:8000/api/tasks/${cookies.get('uname')}`)
+    const {tasks} = useFechGetTasks(`${url}tasks/${cookies.get('uname')}`)
 
     const handleHideLogIn=()=>{
         if (cookies.get('uname')) {

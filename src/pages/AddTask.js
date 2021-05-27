@@ -3,6 +3,7 @@ import FormAddTask from '../components/FormAddTask'
 import NavBar from '../components/NavBar'
 import Task from '../components/Task'
 import Cookies from 'universal-cookie'
+import url from './config'
 
 const cookies = new Cookies()
 
@@ -42,7 +43,7 @@ const AddTask = (props) => {
 
             console.log(JSON.stringify(form));
 
-            await fetch(`http://localhost:8000/api/tasks/`, config)
+            await fetch(`${url}tasks/`, config)
 
 
             props.history.push('/tasks')

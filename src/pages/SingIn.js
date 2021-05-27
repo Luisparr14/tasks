@@ -3,6 +3,7 @@ import NavBar from '../components/NavBar'
 import SingInForm from '../components/SingInForm'
 
 import Cookies from 'universal-cookie'
+import url from './config'
 
 const cookies = new Cookies()
 cookies.remove('username')
@@ -40,7 +41,7 @@ const SingIn = (props) => {
             }
 
             e.preventDefault()
-            let res = await fetch(`http://localhost:8000/api/user/${form.userName}`, config);
+            let res = await fetch(`${url}user/${form.userName}`, config);
             let usr = await res.json();
             
             if (usr.passwordV) {
