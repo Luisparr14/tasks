@@ -1,4 +1,5 @@
 import React from 'react'
+import './style/Forms.css'
 
 const FormAddTask = ({ onChange, onSubmit, form }) => (
 
@@ -49,7 +50,7 @@ const FormAddTask = ({ onChange, onSubmit, form }) => (
                 </div>
             </div>
             <div className="mb-2 d-grid gap-2">
-                <button className="btn btn-success" type="submit">
+                <button className="Btn-Add-Task btn btn-success" type="submit">
                     Add Task
                 </button>
             </div>

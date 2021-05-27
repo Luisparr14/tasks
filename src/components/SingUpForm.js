@@ -1,5 +1,5 @@
 import React from 'react'
-
+import './style/Forms.css'
 const SingUpForm = ({ onSubmit, onChange,form}) => (
     <div className='container'>
         <form className="form mt-5"
