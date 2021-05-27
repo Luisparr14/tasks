@@ -28,7 +28,7 @@ const App = () => {
                 <Route exact path="/singup" component={SingUp} />
                 <Route exact path="/**" component={SingIn} />
             </Switch>
-            </BrowserRouter>
+            </BrowserRouter> 
         )
     }
     
