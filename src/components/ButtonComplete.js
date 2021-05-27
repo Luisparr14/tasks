@@ -1,11 +1,12 @@
 import React from 'react'
 import Cookies from 'universal-cookie'
+import url from '../pages/config'
 
 const cookies = new Cookies()
 const ButtonComplete = (props) => {
     const handleClick = async () => {
         try {
-            await fetch(`http://localhost:8000/api/tasks/delete/${cookies.get('uname')}/${props.idButton}`)
+            await fetch(`${url}tasks/delete/${cookies.get('uname')}/${props.idButton}`)
             window.location.href="/tasks"
         } catch (error) {
 
