@@ -8,13 +8,13 @@ const TaskList = ({tasks}) => (
             tasks.map((task) => {            
                 return (
                     <Task
-                        key={task.id_task}
+                        key={task.id_tasks}
                         title={task.name}
                         description={task.description}
                         leftColor={task.left_color}
                         rightColor={task.right_color}
                         button={<ButtonComplete
-                        idButton={task.id_task}
+                        idButton={task.id_tasks}
                         />}
                     />
                 )
