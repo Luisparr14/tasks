@@ -45,7 +45,7 @@ const SingUp = (props) => {
             let user=await res.json()
             console.log(user);
             
-            props.history.push('/');
+            window.location.href="/"
         } catch (error) {
             console.log('err', error);
         }

@@ -46,7 +46,7 @@ const SingIn = (props) => {
             
             if (usr.passwordV) {
                 cookies.set('uname', form.userName, { path: "/" })
-                props.history.push('/tasks')
+                window.location.href="/tasks"
             } else {
                 alert('Contraseña incorrecta')
             }

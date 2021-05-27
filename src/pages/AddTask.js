@@ -46,7 +46,7 @@ const AddTask = (props) => {
             await fetch(`${url}tasks/`, config)
 
 
-            props.history.push('/tasks')
+            window.location.href="/tasks"
 
         } catch (error) {
             console.log('Error: ', error);
