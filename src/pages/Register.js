@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import NavBar from '../components/NavBar'
-import SingUpForm from '../components/SingUpForm'
+import RegisterForm from '../components/RegisterForm'
 import Cookies from 'universal-cookie'
 import url from './config'
 
@@ -57,7 +57,7 @@ const SingUp = (props) => {
             hideLogIn={handleHideLogIn()}
             hideLogOut={handleHideLogOu()}
             />
-            <SingUpForm 
+            <RegisterForm 
             onSubmit={handleSubmit}
             onChange={handleChange}
             form={form}

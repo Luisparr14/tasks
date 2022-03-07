@@ -1,14 +1,14 @@
 import React from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
-import SingUp from '../pages/SingUp'
-import SingIn from '../pages/SingIn'
+import Register from '../pages/Register'
+import Login from '../pages/Login'
 import Tasks from '../pages/Tasks'
 import Cookies from 'universal-cookie'
 import AddTask from '../pages/AddTask'
 import CssBaseline from '@mui/material/CssBaseline'
 
 const cookies = new Cookies()
-console.log("App js", cookies.getAll());
+
 const App = () => {
   if (cookies.get('uname')) {
     return (
@@ -18,8 +18,8 @@ const App = () => {
           <Switch>
             <Route exact path="/" component={Tasks} />
             <Route exact path="/tasks" component={Tasks} />
-            <Route exact path="/singup" component={SingUp} />
-            <Route exact path="/login" component={SingIn} />
+            <Route exact path="/register" component={Register} />
+            <Route exact path="/login" component={Login} />
             <Route exact path="/task/new" component={AddTask} />
           </Switch>
         </BrowserRouter>
@@ -31,8 +31,8 @@ const App = () => {
         <CssBaseline />
         <BrowserRouter>
           <Switch>
-            <Route exact path="/singup" component={SingUp} />
-            <Route exact path="/**" component={SingIn} />
+            <Route exact path="/register" component={Register} />
+            <Route exact path="/**" component={Login} />
           </Switch>
         </BrowserRouter>
       </>

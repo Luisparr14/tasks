@@ -10,12 +10,12 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 
-const pages = ['All Tasks'];
 
 const NavBar = ({ sessionActive = true }) => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [sessionActiveState, setSessionActiveState] = React.useState(sessionActive);
   let settings = sessionActiveState ? ['Logout'] : ['Login'];
+  let pages = sessionActiveState ? ['All Tasks', 'Add Task'] : [];
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -48,7 +48,7 @@ const NavBar = ({ sessionActive = true }) => {
             >
               <MenuIcon />
             </IconButton>
-            <Menu
+            {sessionActiveState && <Menu
               id="menu-appbar"
               anchorEl={anchorElNav}
               anchorOrigin={{
@@ -71,7 +71,7 @@ const NavBar = ({ sessionActive = true }) => {
                   <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}
-            </Menu>
+            </Menu>}
           </Box>
 
           <Typography
