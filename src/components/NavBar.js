@@ -1,46 +1,109 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import './style/NavBar.css'
-import Cookies from 'universal-cookie'
+import * as React from 'react';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import Menu from '@mui/material/Menu';
+import MenuIcon from '@mui/icons-material/Menu';
+import Container from '@mui/material/Container';
+import Button from '@mui/material/Button';
+import MenuItem from '@mui/material/MenuItem';
 
-const cookies = new Cookies()
+const pages = ['All Tasks'];
 
-const NavBar = ({ hideLogIn, hideLogOut}) => {
+const NavBar = ({ sessionActive = true }) => {
+  const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const [sessionActiveState, setSessionActiveState] = React.useState(sessionActive);
+  let settings = sessionActiveState ? ['Logout'] : ['Login'];
+  const handleOpenNavMenu = (event) => {
+    setAnchorElNav(event.currentTarget);
+  };
 
-    const handleLogOut=()=>{
-        cookies.remove('uname')
-    }
+  const handleCloseNavMenu = () => {
+    setAnchorElNav(null);
+  };
 
-    return (
-        <nav className="navbar navbar-expand-lg navbar-light bg-light container-fluid">
-            <div className="container-fluid">
-                <Link className="navbar-brand" to="/">Easy tasks</Link>
-                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon"></span>
-                </button>
-                <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li className="nav-item">
-                            <Link className="nav-link" aria-current="page" to="/tasks">All tasks</Link>
-                        </li>
-                    </ul>
-                    <ul className="d-flex navbar-nav">
-                        <li className="nav-item" hidden={hideLogIn}>
-                            <Link className="nav-link btn btn-success" to="/login">Log in</Link>
-                        </li>
-                        <li className="nav-item" hidden={hideLogIn}>
-                            <Link className="nav-link btn" to="/singup">Sing Up</Link>
-                        </li>
-                        <li className="nav-item" hidden={hideLogOut}>
-                            <Link className="nav-link btn btn-danger" to="/login" onClick={handleLogOut} >Log Out</Link>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+  return (
+    <AppBar position="static">
+      <Container maxWidth="xl">
+        <Toolbar disableGutters>
+          <Typography
+            variant="h6"
+            noWrap
+            component="div"
+            sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
+          >
+            EASY TASKS
+          </Typography>
 
-    )
+          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+            <IconButton
+              size="large"
+              aria-label="account of current user"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              onClick={handleOpenNavMenu}
+              color="inherit"
+            >
+              <MenuIcon />
+            </IconButton>
+            <Menu
+              id="menu-appbar"
+              anchorEl={anchorElNav}
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'left',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'left',
+              }}
+              open={Boolean(anchorElNav)}
+              onClose={handleCloseNavMenu}
+              sx={{
+                display: { xs: 'block', md: 'none' },
+              }}
+            >
+              {pages.map((page) => (
+                <MenuItem key={page} onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">{page}</Typography>
+                </MenuItem>
+              ))}
+            </Menu>
+          </Box>
 
-}
+          <Typography
+            variant="h6"
+            noWrap
+            component="div"
+            sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
+          >
+            EASY TASKS
+          </Typography>
 
-export default NavBar
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+            {pages.map((page) => (
+              <Button
+                key={page}
+                onClick={handleCloseNavMenu}
+                sx={{ my: 2, color: 'white', display: 'block' }}
+              >
+                {page}
+              </Button>
+            ))}
+          </Box>
+          {settings.map((setting) => (
+            <MenuItem key={setting} onClick={() => {
+              setSessionActiveState(!sessionActiveState);
+            }}>
+              <Typography variant='label' component='div' textAlign="center">{setting}</Typography>
+            </MenuItem>
+          ))}
+        </Toolbar>
+      </Container>
+    </AppBar>
+  );
+};
+export default NavBar;
