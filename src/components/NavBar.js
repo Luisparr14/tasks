@@ -7,11 +7,11 @@ import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
-import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
+import { Link } from 'react-router-dom';
+import './style/NavBar.css';
 
-
-const NavBar = ({ sessionActive = true }) => {
+const NavBar = ({ sessionActive = false }) => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [sessionActiveState, setSessionActiveState] = React.useState(sessionActive);
   let settings = sessionActiveState ? ['Logout'] : ['Login'];
@@ -25,18 +25,21 @@ const NavBar = ({ sessionActive = true }) => {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" sx={{
+
+    }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
-          >
-            EASY TASKS
-          </Typography>
-
+          <Link to="/">
+            <Typography
+              variant="h6"
+              noWrap
+              component="div"
+              sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
+            >
+              EASY TASKS
+            </Typography>
+          </Link>
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
@@ -68,7 +71,7 @@ const NavBar = ({ sessionActive = true }) => {
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                  <Typography textAlign="left">{page}</Typography>
                 </MenuItem>
               ))}
             </Menu>}
@@ -85,22 +88,26 @@ const NavBar = ({ sessionActive = true }) => {
 
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                {page}
-              </Button>
+              <Link key={page} to={`/${page}`} style={{ textDecoration: 'none', height: '100%' }}>
+                <Typography
+                  variant="h7"
+                  noWrap
+                  component="div"
+                  sx={{ mr: 2, display: { xs: 'none', md: 'flex' }, color: '#fff' }}
+                >
+                  {page}
+                </Typography>
+              </Link>
             ))}
           </Box>
-          {settings.map((setting) => (
-            <MenuItem key={setting} onClick={() => {
-              setSessionActiveState(!sessionActiveState);
-            }}>
-              <Typography variant='label' component='div' textAlign="center">{setting}</Typography>
-            </MenuItem>
-          ))}
+          {sessionActiveState &&
+            <MenuItem onClick={() => setSessionActiveState(!sessionActiveState)}>
+              <Typography textAlign="left">{settings[0]}</Typography>
+            </MenuItem>}
+          {!sessionActiveState &&
+            <Link to={`/login`} style={{ textDecoration: 'none', height: '100%' }}>
+              <Typography sx={{ mr: 2, display: { xs: 'none', md: 'flex' }, color: '#fff' }} textAlign="left">{settings[0]}</Typography>
+            </Link>}
         </Toolbar>
       </Container>
     </AppBar>

@@ -1,14 +1,7 @@
-import { Button, Container, Stack, TextField } from '@mui/material'
+import { Button, Stack, TextField } from '@mui/material'
 import React from 'react'
 import './style/Forms.css'
-const RegisterForm = ({ onSubmit, onChange, form }) => (
-
-  <Container sx={{
-    display: 'flex',
-    minHeight: 'calc(100vh - 69px)',
-    justifyContent: 'center',
-  }}>
-    
+const RegisterForm = ({ onSubmit, onChange, form }) => (    
     <Stack
       component={'form'}
       onSubmit={onSubmit}
@@ -21,17 +14,7 @@ const RegisterForm = ({ onSubmit, onChange, form }) => (
         p: '20px',
       }}
     >
-      <TextField
-        required
-        id="username"
-        name='username'
-        label="Username"
-        value={form.username}
-        onChange={onChange}
-        type="text"
-        size="small"
-      />
-
+      
       <TextField
         required
         id="name"
@@ -77,10 +60,10 @@ const RegisterForm = ({ onSubmit, onChange, form }) => (
 
       <TextField
         required
-        id="password2"
-        name='password2'
+        id="passwordV"
+        name='passwordV'
         label="Confirm password"
-        value={form.password2}
+        value={form.passwordV}
         onChange={onChange}
         type="password"
         size="small"
@@ -90,6 +73,5 @@ const RegisterForm = ({ onSubmit, onChange, form }) => (
         Registrarse
       </Button>
     </Stack>
-  </Container>
 )
 export default RegisterForm

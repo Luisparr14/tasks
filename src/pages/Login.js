@@ -3,13 +3,17 @@ import NavBar from '../components/NavBar'
 import LoginForm from '../components/LoginForm'
 
 import Cookies from 'universal-cookie'
-import url from './config'
+// import url from './config'
+import { Container } from '@mui/material'
 
 const cookies = new Cookies()
 cookies.remove('username')
 const Login = (props) => {
 
-  const [form, setForm] = useState([])
+  const [form, setForm] = useState({
+    email: '',
+    password: ''
+  })
 
   const handleChange = (e) => {
     setForm({
@@ -49,11 +53,19 @@ const Login = (props) => {
   return (
     <React.Fragment>
       <NavBar />
-      <LoginForm
-        onChange={handleChange}
-        onSubmit={handleSubmit}
-        form={form}
-      />
+      <Container
+        sx={{
+          display: 'flex',
+          minHeight: 'calc(100vh - 64px)',
+          justifyContent: 'center',
+        }}
+      >
+        <LoginForm
+          onChange={handleChange}
+          onSubmit={handleSubmit}
+          form={form}
+        />
+      </Container>
     </React.Fragment>
   )
 }
