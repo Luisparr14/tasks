@@ -2,12 +2,13 @@ import { TextField, Button, Stack, Typography } from '@mui/material'
 import React from 'react'
 import { Link } from 'react-router-dom'
 import './style/Forms.css'
+import { validateEmail, validField } from '../helpers/valid'
 
-export default function LoginForm ({ onSubmit, onChange, form }) {
-
+export default function LoginForm ({ onSubmit, onChange, form, sendForm }) {
   return (
     <Stack
       component={'form'}
+      noValidate
       onSubmit={onSubmit}
       spacing={2}
       sx={{
@@ -15,27 +16,31 @@ export default function LoginForm ({ onSubmit, onChange, form }) {
         '& .MuiButton-root': { m: 1, width: '20ch', alignSelf: 'center' },
         backgroundColor: '#f5f5f5',
         alignSelf: 'center',
-        p: '20px',
+        p: '20px'
       }}
     >
 
       <TextField
-        // error={form.email === ''}
-        // helperText={form.email === '' ? 'Campo requerido' : ''}
+        error={validateEmail(form.email).error && sendForm}
+        helperText={sendForm && validateEmail(form.email).message}
         required
         id="email"
         name='email'
         label="Email"
+        autoComplete="email"
         value={form.email}
         onChange={onChange}
         type="email"
         size="small"
       />
       <TextField
+        error={validField(form.password).error && sendForm}
+        helperText={sendForm && validField(form.password).message}
         required
         id="password"
         name='password'
         label="Password"
+        autoComplete='current-password'
         value={form.password}
         onChange={onChange}
         type="password"

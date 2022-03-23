@@ -1,80 +1,91 @@
+import url from '../config/config'
+import Task from '../components/Task'
 import React, { useState } from 'react'
 import FormAddTask from '../components/FormAddTask'
-import NavBar from '../components/NavBar'
-import Task from '../components/Task'
-import Cookies from 'universal-cookie'
-import url from './config'
+import axios from 'axios'
+import { validField } from '../helpers/valid'
+import { Container, Typography } from '@mui/material'
+import { useHistory } from 'react-router-dom'
 
-const cookies = new Cookies()
+const token = localStorage.getItem('token')
+const AddTask = () => {
+  const history = useHistory()
+  const [sendForm, setSendForm] = useState(false)
+  const [error, setError] = useState('')
+  const [form, setForm] = useState({
+    title: '',
+    description: '',
+    leftColor: '#aaaaaa',
+    rightColor: '#000000'
+  })
+  const handleChange = (e) => {
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value
+    })
+  }
 
-const AddTask = (props) => {
+  const handeSubmit = async e => {
+    e.preventDefault()
+    setSendForm(true)
+    if (validField(form.title).error) {
+      setError('Some fields are required')
+      setTimeout(() => {
+        setError('')
+      }, 2000)
+      return
+    }
 
-    const [form, setForm] = useState({ username: cookies.get('uname') })
-    
-    const handleHideLogIn = () => {
-        if (cookies.get('uname')) {
-            return true
+    try {
+      const config = {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${JSON.parse(token).token}`
         }
+      }
+      const res = await axios.post(`${url}/tasks`, form, config)
+      if (res.data.success) {
+        setSendForm(false)
+        history.push('/')
+        return
+      }
+    } catch (error) {
+      console.log('Error: ', error)
     }
-    const handleHideLogOu = () => {
-        if (!cookies.get('uname')) {
-            return true
-        }
-    }
+  }
 
-    const handleChange = (e) => {
-        setForm({
-            ...form,
-            [e.target.name]: e.target.value
-        })
-    }
+  return (
+    <Container
+      sx={{
+        height: 'calc(100vh - 64px)',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'column',
+        width: '100%'
+      }}
+    >
+      <Task
+        title={form.title}
+        description={form.description}
+        leftColor={form.leftColor}
+        rightColor={form.rightColor}
+        showButton={false}
+      />
+      <Typography variant="spam" color="textSecondary" gutterBottom>
+        {error}
+      </Typography>
+      <FormAddTask
+        sendForm={sendForm}
+        onSubmit={handeSubmit}
+        onChange={handleChange}
+        form={form}
+      />
+    </Container>
 
-    const handeSubmit = async e => {
-        e.preventDefault()
-        try {
-            let config = {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(form)
-            }
-
-            console.log(JSON.stringify(form));
-
-            await fetch(`${url}tasks/`, config)
-
-
-            window.location.href="/tasks"
-
-        } catch (error) {
-            console.log('Error: ', error);
-        }
-    }
-
-    return (
-        <React.Fragment>
-            <NavBar
-                hideLogIn={handleHideLogIn()}
-                hideLogOut={handleHideLogOu()}
-            />
-            <Task
-                title={form.name}
-                description={form.description}
-                leftColor={form.leftColor}
-                rightColor={form.rightColor}
-            />
-            <FormAddTask
-                onSubmit={handeSubmit}
-                onChange={handleChange}
-                form={form}
-            />
-
-        </React.Fragment>
-
-    )
-
+  )
 }
 
 export default AddTask

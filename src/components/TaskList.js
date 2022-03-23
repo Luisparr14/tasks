@@ -1,25 +1,22 @@
-import React from 'react'
-import ButtonComplete from './ButtonComplete'
+import React, { Fragment } from 'react'
 import Task from './Task'
 
-const TaskList = ({tasks}) => (
-    <React.Fragment>
-        {
-            tasks.map((task) => {            
-                return (
-                    <Task
-                        key={task.id_tasks}
-                        title={task.name}
-                        description={task.description}
-                        leftColor={task.left_color}
-                        rightColor={task.right_color}
-                        button={<ButtonComplete
-                        idButton={task.id_tasks}
-                        />}
-                    />
-                )
-            })
-        }
-    </React.Fragment>
+const TaskList = ({ tasks }) => (
+  <Fragment>
+    {
+      tasks.map((task) => {
+        return (
+          <Task
+            key={task.taskId}
+            id={task.taskId}
+            title={task.title}
+            description={task.description}
+            leftColor={task.leftColor}
+            rightColor={task.rightColor}
+          />
+        )
+      })
+    }
+  </Fragment>
 )
 export default TaskList

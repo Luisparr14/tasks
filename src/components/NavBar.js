@@ -1,28 +1,40 @@
-import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
-import Container from '@mui/material/Container';
-import MenuItem from '@mui/material/MenuItem';
-import { Link } from 'react-router-dom';
-import './style/NavBar.css';
+import * as React from 'react'
+import AppBar from '@mui/material/AppBar'
+import Box from '@mui/material/Box'
+import Toolbar from '@mui/material/Toolbar'
+import IconButton from '@mui/material/IconButton'
+import Typography from '@mui/material/Typography'
+import Menu from '@mui/material/Menu'
+import MenuIcon from '@mui/icons-material/Menu'
+import Container from '@mui/material/Container'
+import MenuItem from '@mui/material/MenuItem'
+import { Link } from 'react-router-dom'
+import './style/NavBar.css'
 
-const NavBar = ({ sessionActive = false }) => {
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [sessionActiveState, setSessionActiveState] = React.useState(sessionActive);
-  let settings = sessionActiveState ? ['Logout'] : ['Login'];
-  let pages = sessionActiveState ? ['All Tasks', 'Add Task'] : [];
+const paginas = [
+  {
+    name: 'Tasks',
+    path: '/tasks'
+  },
+  {
+    name: 'Add Task',
+    path: '/add/task'
+  }
+]
+
+const NavBar = ({ sessionActive = false, logOut }) => {
+  const [anchorElNav, setAnchorElNav] = React.useState(null)
+
+  const settings = sessionActive ? ['Logout'] : ['Login']
+  const pages = sessionActive ? paginas : []
+
   const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
-  };
+    setAnchorElNav(event.currentTarget)
+  }
 
   const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
+    setAnchorElNav(null)
+  }
 
   return (
     <AppBar position="static" sx={{
@@ -51,27 +63,29 @@ const NavBar = ({ sessionActive = false }) => {
             >
               <MenuIcon />
             </IconButton>
-            {sessionActiveState && <Menu
+            {sessionActive && <Menu
               id="menu-appbar"
               anchorEl={anchorElNav}
               anchorOrigin={{
                 vertical: 'bottom',
-                horizontal: 'left',
+                horizontal: 'left'
               }}
               keepMounted
               transformOrigin={{
                 vertical: 'top',
-                horizontal: 'left',
+                horizontal: 'left'
               }}
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
               sx={{
-                display: { xs: 'block', md: 'none' },
+                display: { xs: 'block', md: 'none' }
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="left">{page}</Typography>
+                <MenuItem key={page.name} onClick={handleCloseNavMenu}>
+                  <Link to={page.path}>
+                    <Typography sx={{ color: '#000' }} textAlign="left">{page.name}</Typography>
+                  </Link>
                 </MenuItem>
               ))}
             </Menu>}
@@ -88,29 +102,29 @@ const NavBar = ({ sessionActive = false }) => {
 
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
-              <Link key={page} to={`/${page}`} style={{ textDecoration: 'none', height: '100%' }}>
+              <Link key={page.name} to={page.path} style={{ textDecoration: 'none', height: '100%' }}>
                 <Typography
                   variant="h7"
                   noWrap
                   component="div"
                   sx={{ mr: 2, display: { xs: 'none', md: 'flex' }, color: '#fff' }}
                 >
-                  {page}
+                  {page.name}
                 </Typography>
               </Link>
             ))}
           </Box>
-          {sessionActiveState &&
-            <MenuItem onClick={() => setSessionActiveState(!sessionActiveState)}>
+          {sessionActive &&
+            <MenuItem onClick={logOut}>
               <Typography textAlign="left">{settings[0]}</Typography>
             </MenuItem>}
-          {!sessionActiveState &&
-            <Link to={`/login`} style={{ textDecoration: 'none', height: '100%' }}>
-              <Typography sx={{ mr: 2, display: { xs: 'none', md: 'flex' }, color: '#fff' }} textAlign="left">{settings[0]}</Typography>
+          {!sessionActive &&
+            <Link to={'/login'} style={{ textDecoration: 'none', height: '100%' }}>
+              <Typography sx={{ mr: 2, display: { xs: 'flex', md: 'flex' }, color: '#fff' }} textAlign="left">{settings[0]}</Typography>
             </Link>}
         </Toolbar>
       </Container>
     </AppBar>
-  );
-};
-export default NavBar;
+  )
+}
+export default NavBar

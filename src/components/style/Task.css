@@ -9,26 +9,6 @@
     max-width: 600px;
 }
 
-.Task-Info h1 {
-    color: #FFF;
-    font-size: 30px;
-}
-
-.Task-Info p {
-    color: #FFF;
-    font-size: 19px;
-}
-
-.Btn-Complete {
-    display: flex;
-    justify-content: flex-end;
-}
-
-.Btn-Complete button {
-    font-size: 14px;
-    margin: 0;
-}
-
 @media (min-width: 800px) {
     body {
         min-width: 400px;
