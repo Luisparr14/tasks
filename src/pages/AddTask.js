@@ -1,3 +1,4 @@
+import url from '../config/config'
 import Task from '../components/Task'
 import React, { useState } from 'react'
 import FormAddTask from '../components/FormAddTask'
@@ -44,7 +45,7 @@ const AddTask = () => {
           Authorization: `Bearer ${JSON.parse(token).token}`
         }
       }
-      const res = await axios.post(`${process.env.REACT_APP_API_URL}/tasks`, form, config)
+      const res = await axios.post(`${url}/tasks`, form, config)
       if (res.data.success) {
         setSendForm(false)
         history.push('/')

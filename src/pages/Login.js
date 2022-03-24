@@ -22,7 +22,8 @@ const Login = ({ handleLogin }) => {
         minHeight: 'calc(100vh - 64px)',
         justifyContent: 'center'
       }}
-    >    
+    >
+    
       <LoginForm
         sendForm={sendForm}
         onChange={handleChange}

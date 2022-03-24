@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import RegisterForm from '../components/RegisterForm'
+import url from '../config/config'
 import axios from 'axios'
 import { Container } from '@mui/material'
 import { validField } from '../helpers/valid'
@@ -35,7 +36,7 @@ const SingUp = () => {
         }
       }
 
-      const res = await axios.post(`${process.env.REACT_APP_API_URL}/auth/register`, form, config)      
+      const res = await axios.post(`${url}/auth/register`, form, config)      
       if (res.data.success) {
         history.push('/login')
         setForm(initialForm)

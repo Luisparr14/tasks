@@ -1,3 +1,4 @@
+import url from '../config/config'
 import Tasks from '../pages/Tasks'
 import Register from '../pages/Register'
 import React, { useEffect, useState } from 'react'
@@ -31,7 +32,7 @@ const App = () => {
           'Content-Type': 'application/json'
         }
       }
-      const info = await axios.post(`${process.env.REACT_APP_API_URL}/auth/login`, form, config)
+      const info = await axios.post(`${url}/auth/login`, form, config)
       const { data, success } = info.data
       if (success) {
         localStorage.setItem('token', JSON.stringify(data))
