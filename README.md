@@ -14,4 +14,8 @@ npm start
 ```
 
 ### To access the application deployed with "firebase hosting" enter this link
-https://easy-tasks-20217.web.app/
+
+<a href="https://easy-tasks-20217.web.app/">Easy task on firebase hosting</a>
+
+<a href="https://luisparr14.github.io/tasks">Easy task on Github Pages</a>
+
