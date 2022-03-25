@@ -9,5 +9,8 @@
   "entrypoints": [
     "static/css/main.f9c267cf.css",
     "static/js/main.52a9682a.js"
+  ],
+  "redirects": [
+    "/tasks/index.html"  
   ]
 }
