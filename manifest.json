@@ -23,7 +23,7 @@
   "theme_color": "#000000",
   "background_color": "#ffffff",
   "rewrite":[{
-    "from": "^\/(.*)",
-    "to": "/index.html"
+    "source": "***",
+    "destination": "/tasks/index.html"
   }]
 }
